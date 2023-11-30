@@ -10,6 +10,12 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { BoletaComponent } from './Components/boleta/boleta.component';
 import { InicioComponent } from './Components/inicio/inicio.component';
+import { FiltroProductoComponent } from './Components/productos/filtro-producto/filtro-producto.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FiltroClienteComponent } from './Components/clientes/filtro-cliente/filtro-cliente.component';
+
 
 
 @NgModule({
@@ -19,15 +25,20 @@ import { InicioComponent } from './Components/inicio/inicio.component';
     ProductoComponent,
     NavbarComponent,
     BoletaComponent,
-    InicioComponent
+    InicioComponent,
+    FiltroProductoComponent,
+    FiltroClienteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
