@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="producto.component.css">
+    <title>Mantenimiento Producto</title>
+</head>
+<body>
+    <h1>Mantenimiento Producto</h1>
+    <br>
+    <div class="container">     
+        <div class="card form-container">
+            <div class="card-body">
+                <form [formGroup]="formProducto" (ngSubmit)="AgregarProducto()">
+                    <div class="form-group">
+                        <label class="form-label">Código:</label>
+                        <input type="text" class="form-control" name="cod_producto" formControlName="cod_producto">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Descripción:</label>
+                        <input type="text" class="form-control" name="des_producto" formControlName="des_producto">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Marca:</label>
+                        <input type="text" class="form-control" name="marca_producto" formControlName="marca_producto">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Precio:</label>
+                        <input type="text" class="form-control" name="pre_producto" formControlName="pre_producto">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Stock:</label>
+                        <input type="number" class="form-control" name="stock_producto" formControlName="stock_producto">
+                    </div>
+                    <button class="btn btn-primary mt-2">Agregar</button>
+                    <button type="button" class="btn btn-primary mt-2" (click)="ActualizarProducto()">Actualizar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="list-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let elemento of dataProducto">
+                        <th scope="row">{{elemento.cod_producto}}</th>
+                        <td>{{elemento.des_producto}}</td>
+                        <td>{{elemento.marca_producto}}</td>
+                        <td>{{elemento.pre_producto}}</td>
+                        <td>{{elemento.stock_producto}}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="editarProducto(elemento)">Editar</button>
+                            <button class="btn btn-danger" (click)="eliminar(elemento.cod_producto)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

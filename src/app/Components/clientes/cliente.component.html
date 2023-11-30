@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cliente.component.css">
+    <title>Mantenimiento Cliente</title>
+</head>
+<body>
+    <h1>Mantenimiento Cliente</h1>
+    <br>
+    <div class="contenedor">     
+        <div class="card form-container" style="margin-left: 41% ; background-color: aqua;width: 150%;">
+            <div class="card-body" >
+                <form [formGroup]="formCliente" (ngSubmit)="AgregarCliente()">
+                    <div class="form-group">
+                        <label class="form-label">Código:</label>
+                        <input type="text" class="form-control" name="cod_cli" formControlName="cod_cli">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" name="nom_cli" formControlName="nom_cli">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Apellido:</label>
+                        <input type="text" class="form-control" name="ape_cli" formControlName="ape_cli">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Número de Documento:</label>
+                        <input type="text" class="form-control" name="numdoc_cli" formControlName="numdoc_cli">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Telefono:</label>
+                        <input type="number" class="form-control" name="telf_cli" formControlName="telf_cli">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Correo:</label>
+                        <input type="text" class="form-control" name="correo_cli" formControlName="correo_cli">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Clase:</label>
+                        <select class="form-control" formControlName="tipo_clase">
+                            <option *ngFor="let tipo of tipo_clase" [ngValue]="tipo">
+                              {{ tipo.cod_clase }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Membresia:</label>
+                        <select class="form-control" formControlName="tipo_membresia">
+                            <option *ngFor="let tipo of tipo_membresia" [ngValue]="tipo">
+                              {{ tipo.cod_membresia }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">FechaInicio:</label>
+                        <input type="date" class="form-control" name="fecha_inicio" formControlName="fecha_inicio">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">FechaFin:</label>
+                        <input type="date" class="form-control" name="fecha_fin" formControlName="fecha_fin">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Documento:</label>
+                        <select class="form-control" formControlName="tipo_documento">
+                            <option *ngFor="let tipo of tipo_documento" [ngValue]="tipo">
+                              {{ tipo.cod_documento }}
+                            </option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary mt-2">Agregar</button>
+                    <button type="button" class="btn btn-primary mt-2" (click)="ActualizarCliente()">Actualizar</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="list-container" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Numero de Documento</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Clase</th>
+                        <th scope="col">Membresia</th>
+                        <th scope="col">FechaInicio</th>
+                        <th scope="col">FechaFin</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let elemento of dataCliente">
+                        <th scope="row">{{elemento.cod_cli}}</th>
+                        <td>{{elemento.nom_cli}}</td>
+                        <td>{{elemento.ape_cli}}</td>
+                        <td>{{elemento.numdoc_cli}}</td>
+                        <td>{{elemento.telf_cli}}</td>
+                        <td>{{elemento.correo_cli}}</td>
+                        <td>{{elemento.tipo_clase.des_clase}}</td>
+                        <td>{{elemento.tipo_membresia.des_membresia}}</td>
+                        <td>{{elemento.fecha_inicio | date:'dd/MM/yyyy'}}</td>
+                        <td>{{elemento.fecha_fin | date:'dd/MM/yyyy'}}</td>
+                        <td>{{elemento.tipo_documento.des_documento}}</td>
+                        <td>
+                            <button class="btn btn-primary"(click)="editarCliente(elemento)">Editar</button>
+                            <button class="btn btn-danger" (click)="eliminar(elemento.cod_cli)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
